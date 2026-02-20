@@ -7,8 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  # 【⚠️别忘了改这里】把 my-ironclaw 换成你想要的镜像名
-  IMAGE_NAME: ${{ github.repository_owner }}/my-ironclaw
+  IMAGE_NAME: ${{ github.repository_owner }}/ironclaw
 
 jobs:
   build-and-push:
