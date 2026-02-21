@@ -1,4 +1,4 @@
-FROM docker.io/rust:slim AS chef
+FROM docker.io/rust:slim-trixie AS chef
 RUN cargo install cargo-chef
 WORKDIR /app
 
@@ -13,7 +13,7 @@ RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
 RUN RUSTFLAGS="-C strip=symbols" cargo build --release
 
-FROM gcr.io/distroless/cc-debian12:nonroot
+FROM gcr.io/distroless/cc-debian13:nonroot
 WORKDIR /home/nonroot
 COPY --from=builder /app/target/release/ironclaw /ironclaw
 ENTRYPOINT ["/ironclaw"]
