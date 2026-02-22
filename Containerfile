@@ -13,7 +13,7 @@ RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
 RUN RUSTFLAGS="-C strip=symbols" cargo build --release
 
-FROM gcr.io/distroless/cc-debian13:nonroot
+FROM docker.io/debian:stable-slim
 WORKDIR /home/nonroot
 COPY --from=builder /app/target/release/ironclaw /ironclaw
 ENTRYPOINT ["/ironclaw"]
